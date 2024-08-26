@@ -1,0 +1,787 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Curso R no muerde</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="ba0287e4-7231-444f-9560-1e6947527d28" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/gradients_11.jpg" style="object-position:center 26.890000000000004%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Curso%20R%20no%20muerde%20ba0287e47231444f95601e6947527d28/R_no_muerde_logo.jpeg"/></div><h1 class="page-title">Curso R no muerde</h1><p class="page-description"></p></header><div class="page-body"><h2 id="87c47a0c-e10b-44bd-b6bc-429af5b62e4b" class=""><span style="border-bottom:0.05em solid">Introducción a R</span></h2><p id="23c940f4-6a43-49d8-a711-8005b57a3d41" class="">
+</p><p id="40da6aaf-6cf3-45ac-b70b-c301f4a3f4ba" class="">R es un lenguaje de programación y un entorno de software libre, diseñado principalmente para el análisis estadístico y la visualización de datos. Es ampliamente utilizado por estadísticos, científicos de datos, bioinformáticos, y otros profesionales en campos que requieren análisis de datos complejos.</p><h3 id="c575c0c0-6e22-45a0-99dc-cb03d54fb19f" class=""><strong>Características Principales de R:</strong></h3><ol type="1" id="2747ed6a-f6bf-4142-8dee-7d5bcae7b370" class="numbered-list" start="1"><li><strong>Lenguaje de Programación:</strong><ul id="62555da5-8100-4b9d-87fb-bb4991e24fd8" class="bulleted-list"><li style="list-style-type:disc">R es un lenguaje de programación interpretado, lo que significa que puedes ejecutar comandos de manera interactiva y ver los resultados de inmediato.</li></ul><ul id="a5fc2f23-9899-4486-86c1-77424115ec65" class="bulleted-list"><li style="list-style-type:disc">Es un lenguaje orientado a objetos, lo que permite organizar datos y funciones en objetos que pueden ser manipulados fácilmente.</li></ul></li></ol><ol type="1" id="58316a77-c4e8-47fc-9c13-72552b82a9b0" class="numbered-list" start="2"><li><strong>Análisis Estadístico:</strong><ul id="a54d2ea3-3c72-4fb8-865f-786d982e0495" class="bulleted-list"><li style="list-style-type:disc">R ofrece una amplia variedad de técnicas estadísticas, incluyendo modelos lineales y no lineales, pruebas estadísticas, análisis de series temporales, clasificación, clustering, entre otros.</li></ul><ul id="a11eb2ed-49a3-4354-9e9e-e4ba7c8038d8" class="bulleted-list"><li style="list-style-type:disc">Permite realizar análisis desde los más simples hasta los más complejos, con la posibilidad de personalizar cada paso del análisis.</li></ul></li></ol><ol type="1" id="45f5a141-1714-4c99-a36a-f712bdfd0c0a" class="numbered-list" start="3"><li><strong>Visualización de Datos:</strong><ul id="909cacb9-5c41-4806-ba94-751bc2c2486d" class="bulleted-list"><li style="list-style-type:disc">R es muy potente en la creación de gráficos y visualizaciones. Puedes generar desde gráficos simples como histogramas y gráficos de barras, hasta gráficos más complejos como mapas de calor, gráficos de dispersión tridimensionales y gráficos interactivos.</li></ul><ul id="8b9c5514-d9a9-470f-a21e-7738264750be" class="bulleted-list"><li style="list-style-type:disc">Paquetes como <code>ggplot2</code> son muy populares para crear visualizaciones sofisticadas y personalizadas.</li></ul></li></ol><ol type="1" id="c3f1e720-4138-4654-90ff-0e36b5bfb678" class="numbered-list" start="4"><li><strong>Entorno de Software:</strong><ul id="a7a76cb6-6fd2-49e1-8afe-93e3f15d2552" class="bulleted-list"><li style="list-style-type:disc">R no solo es un lenguaje, sino también un entorno de software en el que puedes escribir y ejecutar scripts, almacenar y manejar datos, y producir informes y gráficos.</li></ul><ul id="fdeb30ad-122a-4a99-915e-78b7ac717507" class="bulleted-list"><li style="list-style-type:disc">R puede integrarse con otros lenguajes de programación como Python y C++, y es extensible a través de paquetes.</li></ul></li></ol><ol type="1" id="f13941ee-13e0-4229-83a8-46109155641e" class="numbered-list" start="5"><li><strong>Comunidad y Soporte:</strong><ul id="444da566-47f1-4881-8e7c-98c24954da02" class="bulleted-list"><li style="list-style-type:disc">La funcionalidad de R se puede ampliar mediante paquetes, que son colecciones de funciones, datos y código que puedes instalar y utilizar. Actualmente, existen más de 15,000 paquetes disponibles en CRAN (Comprehensive R Archive Network), cubriendo una amplia gama de aplicaciones.</li></ul><ul id="fffef40d-5534-8030-9b46-d4d9a5cbb5ab" class="bulleted-list"><li style="list-style-type:disc">Para análisis de datos asociados a biología, está disponible la plataforma Bioconductor <a href="https://www.bioconductor.org/">https://www.bioconductor.org/</a>, la cual contiene más de 2300 paquetes disponibles para su uso.</li></ul><ul id="55266229-41d1-491e-83f1-7a08f195ad25" class="bulleted-list"><li style="list-style-type:disc">R tiene una gran comunidad de usuarios que contribuyen con paquetes, tutoriales, y foros de discusión. La extensa documentación y los recursos en línea facilitan aprender y resolver problemas.</li></ul></li></ol><p id="2ec05b71-5df6-4ab5-b1d5-4e37f92d5579" class="">
+</p><hr id="11b5c700-8dc5-4f6f-bd92-a52af12ce0c6"/><h2 id="ab46dbd9-f7f7-4c35-a9c1-50d939b9ed39" class=""><strong>Tutorial de Instalación de R</strong></h2><h3 id="08ffa8ee-e8c9-475a-a113-d91c39178ef6" class=""><strong>Paso 1: Descargar R</strong></h3><h3 id="2500c5d8-1833-462f-ac66-43eda19edb28" class=""><strong>1.1 Visitar el Sitio Web de CRAN</strong></h3><ul id="22da759c-746c-4013-89f1-130126ea7ff6" class="bulleted-list"><li style="list-style-type:disc">Abre tu navegador web.</li></ul><ul id="7e224ac7-1ea1-4ef6-ab81-43002dc1b4ae" class="bulleted-list"><li style="list-style-type:disc">Dirígete al sitio oficial de CRAN (Comprehensive R Archive Network): <a href="https://cran.r-project.org/">https://cran.r-project.org/</a>.</li></ul><h3 id="9603cb89-5a40-43fa-a553-be3de302e57e" class=""><strong>1.2 Seleccionar el Sistema Operativo</strong></h3><ul id="738e2ef0-57d2-4e51-8e2f-c95c40279da4" class="bulleted-list"><li style="list-style-type:disc">En la página de CRAN, verás opciones para descargar R para diferentes sistemas operativos:<ul id="e5d07e34-7297-448f-ab5e-09ccdee3c76c" class="bulleted-list"><li style="list-style-type:circle"><strong>Windows:</strong> Haz clic en &quot;Download R for Windows&quot;.</li></ul><ul id="6a2a5d7a-55c7-4960-a6ef-95a62376d963" class="bulleted-list"><li style="list-style-type:circle"><strong>macOS:</strong> Haz clic en &quot;Download R for (Mac) OS X&quot;.</li></ul><ul id="6441fd96-c896-44e6-8687-bf84fad9ec90" class="bulleted-list"><li style="list-style-type:circle"><strong>Linux:</strong> Haz clic en &quot;Download R for Linux&quot;.</li></ul></li></ul><h3 id="a0662a2b-90c6-412c-9522-f149adbbec8d" class=""><strong>Paso 2: Instalación de R en tu Sistema Operativo</strong></h3><h3 id="1641df78-0ca1-40e2-b40c-ea0666501eb4" class=""><strong>2.1 Instalación de R en Windows</strong></h3><ol type="1" id="defb3f4c-3be7-4304-a906-e936d91c4eb5" class="numbered-list" start="1"><li><strong>Descargar el Instalador:</strong><ul id="a3eace88-9632-48e6-b485-30f773bb5fe5" class="bulleted-list"><li style="list-style-type:disc">Después de seleccionar &quot;Download R for Windows&quot;, haz clic en &quot;base&quot; y luego en el enlace <code>Download R x.y.z for Windows</code> (donde x.y.z es la versión más reciente).</li></ul></li></ol><ol type="1" id="5a46519a-2e40-41ba-a11d-27b0bb2a6251" class="numbered-list" start="2"><li><strong>Ejecutar el Instalador:</strong><ul id="3c921d7b-49fb-444e-b758-fa5dd6118da7" class="bulleted-list"><li style="list-style-type:disc">Una vez descargado el archivo <code>.exe</code>, haz doble clic para ejecutar el instalador.</li></ul><ul id="ddd06eb4-ef80-453c-87f9-6740027ed56d" class="bulleted-list"><li style="list-style-type:disc">Acepta los términos y condiciones.</li></ul><ul id="3f595e68-71ee-413d-a8de-b23411dbdff0" class="bulleted-list"><li style="list-style-type:disc">Elige la carpeta de instalación (la predeterminada suele ser adecuada).</li></ul><ul id="171cd07a-c505-4c75-bf3c-b0ed8e60a4b4" class="bulleted-list"><li style="list-style-type:disc">Selecciona las opciones predeterminadas en las configuraciones adicionales y haz clic en &quot;Next&quot; hasta completar la instalación.</li></ul></li></ol><ol type="1" id="7d036b20-5431-4c28-898e-d60ecb70b403" class="numbered-list" start="3"><li><strong>Finalizar la Instalación:</strong><ul id="1924e68d-7998-40a9-8fa8-999c2fd73345" class="bulleted-list"><li style="list-style-type:disc">Una vez completada, puedes abrir R desde el menú de inicio.</li></ul></li></ol><h3 id="7949c7b9-2bd3-49ec-8780-894241801b69" class=""><strong>2.2 Instalación de R en macOS</strong></h3><ol type="1" id="9f46e0d5-ee24-448d-8cf6-4ca337b0933e" class="numbered-list" start="1"><li><strong>Descargar el Instalador:</strong><ul id="0613fb21-6ffb-4323-955d-40582cfcc7fb" class="bulleted-list"><li style="list-style-type:disc">Después de seleccionar &quot;Download R for (Mac) OS X&quot;, haz clic en el archivo <code>R-x.y.z.pkg</code> para descargar el instalador.</li></ul></li></ol><ol type="1" id="444b123a-273a-4437-be58-30487b73da96" class="numbered-list" start="2"><li><strong>Ejecutar el Instalador:</strong><ul id="d7909ddd-6348-4e75-8d13-e4d74a412c27" class="bulleted-list"><li style="list-style-type:disc">Una vez que el archivo <code>.pkg</code> se haya descargado, ábrelo y sigue las instrucciones del instalador.</li></ul><ul id="a9e15636-308a-4369-ba87-20d6c483cdfa" class="bulleted-list"><li style="list-style-type:disc">Acepta los términos y condiciones.</li></ul><ul id="deb7ae9c-83d5-4710-b5c2-9ffe2c55b148" class="bulleted-list"><li style="list-style-type:disc">Selecciona el disco de instalación (generalmente tu disco principal).</li></ul></li></ol><ol type="1" id="d0c52e0e-fbdd-46c1-bce1-4f6b01fb2b01" class="numbered-list" start="3"><li><strong>Finalizar la Instalación:</strong><ul id="72b0f13a-e288-45d5-8ee2-f73a61289e94" class="bulleted-list"><li style="list-style-type:disc">Al terminar la instalación, R estará disponible en la carpeta de Aplicaciones.</li></ul></li></ol><h3 id="61557c4b-aa77-473d-8ae9-621678f46168" class=""><strong>2.3 Instalación de R en Linux (Ubuntu)</strong></h3><ol type="1" id="333c2bbc-8275-4b7b-b49c-a7249ad69bea" class="numbered-list" start="1"><li><strong>Abrir la Terminal:</strong><ul id="83b4efe5-c513-47d2-b7fb-2745f8b37ab2" class="bulleted-list"><li style="list-style-type:disc">Presiona <code>Ctrl + Alt + T</code> para abrir la terminal.</li></ul></li></ol><ol type="1" id="55247268-e6ea-4180-9499-2759a2788c19" class="numbered-list" start="2"><li><strong>Actualizar los Repositorios:</strong><ul id="ec55b54d-e53d-447d-b78a-63673ab5db47" class="bulleted-list"><li style="list-style-type:disc">Ejecuta el siguiente comando para asegurarte de que tu lista de paquetes está actualizada:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d7979478-3c70-4fe4-89c8-5866d86654aa" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">sudo apt update
+</code></pre></li></ul></li></ol><ol type="1" id="6ec46a91-aaa6-481f-9416-29183f6ea889" class="numbered-list" start="3"><li><strong>Instalar R:</strong><ul id="1c7cf7a4-f834-4e00-9eb0-9f983d4145be" class="bulleted-list"><li style="list-style-type:disc">Instala R ejecutando el siguiente comando:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d45abc93-ffa9-4c0a-9ce5-9772460d9827" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">sudo apt install r-base
+</code></pre></li></ul></li></ol><ol type="1" id="029e3a5f-8305-443d-943e-1b2211e12874" class="numbered-list" start="4"><li><strong>Verificar la Instalación:</strong><ul id="c823a005-f5b2-4a27-908b-4ed4eafb344c" class="bulleted-list"><li style="list-style-type:disc">Una vez completada la instalación, puedes abrir R escribiendo <code>R</code> en la terminal y presionando <code>Enter</code>.</li></ul></li></ol><h3 id="9dd8c7b7-e58d-498a-ba60-dc82bf7aedf9" class=""><strong>Paso 3: Verificación de la Instalación</strong></h3><ol type="1" id="f558e209-c2fa-4b5e-af44-5374cb9ea44f" class="numbered-list" start="1"><li><strong>Abrir R:</strong><ul id="834004cd-e2ef-4c88-90d5-44036600d114" class="bulleted-list"><li style="list-style-type:disc"><strong>Windows:</strong> Desde el menú de inicio, busca &quot;R&quot; y haz clic en el icono de R.</li></ul><ul id="e2c923d5-069f-497e-8ff8-8cf424f4edd5" class="bulleted-list"><li style="list-style-type:disc"><strong>macOS:</strong> Ve a la carpeta de Aplicaciones y haz clic en el icono de R.</li></ul><ul id="1c67463b-5846-4845-a678-db8652021ad2" class="bulleted-list"><li style="list-style-type:disc"><strong>Linux:</strong> Escribe <code>R</code> en la terminal y presiona <code>Enter</code>.</li></ul></li></ol><ol type="1" id="41877987-059e-42b8-b8f5-1ce317ff2a2f" class="numbered-list" start="2"><li><strong>Ejecutar un Comando Simple:</strong><ul id="0e655ce2-9e1b-4fe7-bb16-c2d4f88ab575" class="bulleted-list"><li style="list-style-type:disc">Una vez que R esté abierto, prueba ejecutando un comando simple:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="be620cf8-3337-4607-b688-d889e11505d0" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all">print(&quot;¡R está instalado y funcionando!&quot;)
+</code></pre></li></ul><ul id="49c8d9dd-181b-4926-a5ec-62dadd0205bd" class="bulleted-list"><li style="list-style-type:disc">Si ves el mensaje &quot;¡R está instalado y funcionando!&quot; en la consola, entonces R se ha instalado correctamente.</li></ul></li></ol><h3 id="8a1a1f1c-d903-47fd-a510-295c6e356fe4" class=""><strong>Paso 4: Instalación de RStudio (Opcional pero Recomendado)</strong></h3><p id="f69be8e3-02ed-40a2-840a-fef57b86ac4b" class="">RStudio es un entorno de desarrollo integrado (IDE) que facilita el uso de R. Puedes instalarlo siguiendo estos pasos:</p><ol type="1" id="0cee23a2-cb36-4397-bc88-d408c73c2152" class="numbered-list" start="1"><li><strong>Descargar RStudio:</strong><ul id="bd82f16b-1b30-4db6-8327-9ad715acec85" class="bulleted-list"><li style="list-style-type:disc">Visita <a href="https://posit.co/downloads/">https://posit.co/downloads/</a></li></ul><ul id="419bb32a-2550-4af6-a84c-0c574d23d678" class="bulleted-list"><li style="list-style-type:disc">Selecciona la versión de RStudio adecuada para tu sistema operativo y descárgala.</li></ul></li></ol><ol type="1" id="dbde2e06-83e7-47d1-aadb-93e1e463f882" class="numbered-list" start="2"><li><strong>Instalar RStudio:</strong><ul id="c27faed3-5ca1-477a-b86a-970c00501f04" class="bulleted-list"><li style="list-style-type:disc"><strong>Windows y macOS:</strong> Ejecuta el instalador descargado y sigue las instrucciones.</li></ul><ul id="49e3d043-1883-4dd3-a33b-852bdd63668c" class="bulleted-list"><li style="list-style-type:disc"><strong>Linux:</strong> Si usas Ubuntu, puedes instalar RStudio con los siguientes comandos:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7c879eac-44a6-451c-a513-46d0880ef14e" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">sudo apt install gdebi-core
+sudo gdebi rstudio-x.y.z-amd64.deb  # Reemplaza x.y.z con la versión descargada
+</code></pre></li></ul></li></ol><ol type="1" id="f259441a-ed39-476c-b776-1d5387871ec0" class="numbered-list" start="3"><li><strong>Abrir RStudio:</strong><ul id="7921c562-4890-43d8-986c-d57bae2d2534" class="bulleted-list"><li style="list-style-type:disc">Una vez instalado, puedes abrir RStudio desde el menú de inicio (Windows), la carpeta de Aplicaciones (macOS), o escribiendo <code>rstudio</code> en la terminal (Linux).</li></ul></li></ol><hr id="c1a88c68-1188-49b9-b3dd-bee3fe8c1046"/><p id="0376610d-2faa-411f-a9f2-9fe5f8098db7" class="">
+</p><h2 id="76304aa4-9fea-43f1-8600-14784fc3c9c5" class=""><strong>Exploración de RStudio</strong></h2><p id="fff9a7db-98ce-49c1-91ea-f6d8041f6e63" class="">Una vez que hayas instalado RStudio, puedes explorarlo:</p><ol type="1" id="dd9d5451-e9f0-4b22-967d-298d8615e35e" class="numbered-list" start="1"><li><strong>Console:</strong><ul id="20e74cb3-54f7-43ce-9c20-24e77d4b9c46" class="bulleted-list"><li style="list-style-type:disc">Es el área principal donde puedes escribir y ejecutar comandos de R.</li></ul></li></ol><ol type="1" id="6152592f-45c2-488c-b473-68cf32192561" class="numbered-list" start="2"><li><strong>Environment/History:</strong><ul id="364a55eb-8fe6-4f26-a676-9e6a8115c360" class="bulleted-list"><li style="list-style-type:disc">Aquí puedes ver y manejar todos los objetos que has creado en tu sesión de R.</li></ul></li></ol><ol type="1" id="eec3a25d-9a64-4795-9ded-ac5ec29a6762" class="numbered-list" start="3"><li><strong>Files/Plots/Packages/Help/Viewer:</strong><ul id="908f778c-4228-42ed-b70a-19b16500ca10" class="bulleted-list"><li style="list-style-type:disc">Estas pestañas te permiten explorar archivos, visualizar gráficos, gestionar paquetes, acceder a la documentación y ver páginas web integradas.</li></ul></li></ol><ol type="1" id="f62c5629-430b-4690-a169-cc003dde14d5" class="numbered-list" start="4"><li><strong>Script Editor:</strong><ul id="ef59169b-1252-4384-8324-73aa7a7cb5fb" class="bulleted-list"><li style="list-style-type:disc">Puedes escribir y guardar scripts de R, que luego puedes ejecutar en la consola.</li></ul></li></ol><h3 id="bbd75b5d-c751-4324-8efe-47bd2806ba35" class=""><strong>Ejemplo de una Sesión Simple en RStudio:</strong></h3><ol type="1" id="4c5c6f3e-7e77-4d40-b064-43f21feed96d" class="numbered-list" start="1"><li>Abre RStudio.</li></ol><ol type="1" id="ed1edd04-b8dc-475e-979a-aaf585d35b9e" class="numbered-list" start="2"><li>La consola mostrará este símbolo:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="15cc2291-5f04-4ff5-9bad-6ddbdd67d147" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">&gt;</code></pre><p id="df5b3851-47e4-4d0b-8ff2-87b14c403a02" class="">
+</p></li></ol><p id="fffef40d-5534-80d2-83bd-fb77f3c5747f" class="">Esto indica que está esperando una instrucción.</p><p id="a9a69015-da78-4721-9144-db90fe8ffd28" class="">
+</p><p id="72413122-511b-496e-8897-8f3c93fea194" class="">Recomendamos usar siempre un script de R, en el cual podemos escribir nuestros códigos, donde podemos luego editarlos y reutilizarlos.</p><p id="e1662eb0-d90d-498e-af73-a0d6d3ad5677" class="">Cuando queremos anotar alguna información no ejecutable en nuestro código podemos utilizar el signo “#”, todo lo que está  a la derecha de este signo, será leído como comentario, y no se ejecutará.</p><p id="71c77ecf-5ec5-42c7-9f15-efd474bc0e5c" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b026f030-e5b1-47e1-bae5-6adbb94bb622" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">&gt; # esto es un comentario</code></pre><p id="23eb4295-2145-4c20-8074-c55c4978d770" class="">
+</p><p id="4612be57-c9f6-4f33-96a4-99ebd4d1a961" class="">Podemos hacer operaciones matemáticas desde las más sencillas, por ejemplo:</p><p id="c790d278-77a2-4e4c-83a7-ed13ff7a0dd8" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6c02fc3f-08c3-41cb-8707-1d6c5c1d83fd" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">&gt; 1 + 1</code></pre><p id="edbdbb1d-1069-4e9e-8db9-e32af075bc2c" class="">
+</p><p id="ae454e45-2039-49ed-b7a6-9bb6bf2dd7b3" class="">Esta operación por supuesto entregará en pantalla el número “2”.</p><p id="0841dc4b-9b13-4e70-bbaf-e1700eace961" class="">
+</p><p id="e9c1d719-1742-4933-9d58-e5d39a859329" class="">Esta información puede guardarse en objetos o variables. Existen muchos tipos de objetos, los cuales pueden ser cualquier texto, que comience con algún carácter que no sea un número. Ojalá no utilizar algunos caracteres utilizados en funciones como por ejemplo “F” de FALSE, o “T” de true.</p><p id="fe4ad250-14a2-4642-9300-336bc0379eef" class="">
+</p><p id="fffef40d-5534-8063-804a-cb5b6d72f06a" class=""> </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fffef40d-5534-8030-8936-c21a98ef8e16" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">&gt; a = 1 + 1 # la variable &quot;a&quot; contendrá el número 2</code></pre><p id="9a5b17ec-77f5-48e7-8f4c-417f1f6c56c5" class="">Luego se puede hacer cualquier operación matemática utilizando variables y números, por ejemplo:</p><p id="f7df7ab1-c10a-4b8d-b602-37e20fccd9af" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fffef40d-5534-8038-a0b5-d11d0e7f42b5" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">&gt; c= a*2</code></pre><p id="e52e041f-47cd-4d08-b92a-7d30b3314461" class="">Donde “c”, guardará el número 4.</p><p id="fffef40d-5534-806d-a94a-c1906ee00ff6" class="">
+</p><h1 id="3cabc75a-d91b-437d-b68f-2e576481085c" class="">Tipos de objeto:</h1><p id="fffef40d-5534-80cd-b711-f60a5d2ad0d7" class="">
+</p><p id="c4c14809-a70a-4bd8-9043-a1d8c46af0ca" class="">
+</p><p id="63aecef3-dcdf-47ae-95bd-0debcab2e9e0" class="">En R, hay varios tipos de objetos que puedes utilizar para almacenar y manipular datos. Cada tipo de objeto tiene características y usos específicos. A continuación, se describen los principales tipos de objetos en R:</p><h3 id="fec61e88-cebe-4fd3-8e18-073ba52685d0" class=""><strong>1. Vectores</strong></h3><ul id="e7c206c4-b737-4f3e-91bd-a49b37733fc7" class="bulleted-list"><li style="list-style-type:disc"><strong>Descripción:</strong> Un vector es el tipo de objeto más básico en R. Es una colección de elementos del mismo tipo (numérico, carácter, lógico, etc.).</li></ul><ul id="7153c58b-b7f8-403a-b697-c0c99619cb42" class="bulleted-list"><li style="list-style-type:disc"><strong>Ejemplo:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c36ead64-da05-444f-8775-9eeb30dd0b68" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all"># Vector numérico
+numeros &lt;- c(1, 2, 3, 4, 5) # c(elemento1, elemanto2), es una función nativa de R para concatenar elementos.
+
+# Vector de caracteres
+caracteres &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;) # los caracteres siempre se escriben entre comillas
+
+# Puedes crear vectores de diferentes tipos mediante operaciones. Por ejemplo:
+
+vector.logico &lt;- caracteres == &quot;a&quot; # esto pregunta si algún elemento del vector &quot;caracteres&quot; es igual a &quot;a&quot;.
+
+# Con lo que creas el vector logico, que lo puedes visualizar de la siguiente forma:
+print(vector.logico)
+
+[1]  TRUE FALSE FALSE
+
+# o simplemente visuaizarlo escribiendo el nombre del vector:
+
+vector.logico
+
+[1]  TRUE FALSE FALSE
+
+### hay diferentes formas de hacer lo mismo en R</code></pre></li></ul><h3 id="c77307d6-eb21-4e67-af12-fb2b2da4b4b9" class=""><strong>2. Matrices</strong></h3><ul id="48241e6d-de9c-4174-a322-b33d8cda7b19" class="bulleted-list"><li style="list-style-type:disc"><strong>Descripción:</strong> Una matriz es una extensión de un vector en dos dimensiones (filas y columnas), y todos los elementos deben ser del mismo tipo.</li></ul><ul id="c1329407-4501-4590-89c0-0714ac244191" class="bulleted-list"><li style="list-style-type:disc"><strong>Ejemplo:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="78fead6b-bad8-432e-84d2-a9c8bb983f36" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all"># Crear una matriz de 2x3
+matriz &lt;- matrix(1:6, nrow = 2, ncol = 3)
+print(matriz)
+</code></pre><ul id="321b0dc0-32c1-428d-88c6-a78088605c75" class="bulleted-list"><li style="list-style-type:circle"><strong>Resultado:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2be02140-f647-47f1-916f-0633b4d511d9" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">  		[,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+</code></pre></li></ul></li></ul><h3 id="a225d9b6-1dd5-44af-9324-56c0f2836962" class=""><strong>3. Data Frames</strong></h3><ul id="019211e6-c3fb-4bac-a1c7-41a84de87574" class="bulleted-list"><li style="list-style-type:disc"><strong>Descripción:</strong> Un data frame es una tabla en la que las columnas pueden contener diferentes tipos de datos (numéricos, caracteres, factores, etc.). Es uno de los objetos más utilizados en R para almacenar y manipular datos.</li></ul><ul id="a790e818-8ae1-41e2-9210-e92e7839abf7" class="bulleted-list"><li style="list-style-type:disc"><strong>Ejemplo:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4e53fd15-b2fb-42ad-8f72-0dc3f38ed2eb" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all">df &lt;- data.frame(
+  Nombre = c(&quot;Juan&quot;, &quot;María&quot;, &quot;Pedro&quot;),
+  Edad = c(23, 22, 25),
+  Ciudad = c(&quot;Talca&quot;, &quot;Santiago&quot;, &quot;Concepción&quot;)
+)
+print(df)
+</code></pre></li></ul><h3 id="ded32efc-365a-49a8-a2c3-ad6b21fd3661" class=""><strong>4. Listas</strong></h3><ul id="acf14d25-a2ce-4cee-9d62-cf12117e3a17" class="bulleted-list"><li style="list-style-type:disc"><strong>Descripción:</strong> Una lista es un objeto en R que puede contener diferentes tipos de elementos, incluyendo otros vectores, matrices, data frames, e incluso otras listas.</li></ul><ul id="71621040-5cc1-43dc-9a29-0176630e52d7" class="bulleted-list"><li style="list-style-type:disc"><strong>Ejemplo:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="abf3ef2b-bc3e-41d4-abb4-4267a9d29945" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all">mi_lista &lt;- list(
+  numeros = c(1, 2, 3),
+  caracteres = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;),
+  logicos = c(TRUE, FALSE, TRUE)
+)
+print(mi_lista)
+</code></pre></li></ul><h3 id="59b5ae17-ef9b-43af-b6a3-3edfd1a393ab" class=""><strong>5. Factores</strong></h3><ul id="d71dea77-0169-4e8a-aa29-f217c54e4bdf" class="bulleted-list"><li style="list-style-type:disc"><strong>Descripción:</strong> Un factor es un tipo especial de vector utilizado para representar datos categóricos. Los factores son útiles cuando tienes datos con un número limitado de valores únicos, como géneros o niveles de satisfacción.</li></ul><ul id="1fcb879a-c19e-48f9-b255-a71a5e94690f" class="bulleted-list"><li style="list-style-type:disc"><strong>Ejemplo:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="00441820-8601-4f7e-8dbc-f112fad7c58e" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all">genero &lt;- factor(c(&quot;Masculino&quot;, &quot;Femenino&quot;, &quot;Femenino&quot;, &quot;Masculino&quot;))
+print(genero)
+</code></pre></li></ul><h3 id="2bdb2346-cef7-40f8-997f-5f7e32b92a6d" class=""><strong>6. Arrays</strong></h3><ul id="b70c8974-3fc9-4168-8085-bc67f2460638" class="bulleted-list"><li style="list-style-type:disc"><strong>Descripción:</strong> Un array es similar a una matriz, pero puede tener más de dos dimensiones. Es útil para almacenar datos multidimensionales.</li></ul><ul id="14d716a9-52e0-490b-868d-0a3124e218a0" class="bulleted-list"><li style="list-style-type:disc"><strong>Ejemplo:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="aca0ce16-dcd5-4eb9-b215-c68335097261" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all"># Crear un array de 3x3x2
+mi_array &lt;- array(1:18, dim = c(3, 3, 2))
+print(mi_array)
+</code></pre></li></ul><h3 id="8b0f70ec-2746-46c2-a3b8-505c63cbcb2e" class=""><strong>7. Factores</strong></h3><ul id="1bd184aa-61c3-47bf-9e6c-d838a6267bf9" class="bulleted-list"><li style="list-style-type:disc"><strong>Descripción:</strong> Los factores son utilizados para manejar datos categóricos. Son útiles para variables cualitativas que tienen un número limitado de valores únicos.</li></ul><ul id="9a3135f0-c338-4e84-a945-0cda0c0d4e13" class="bulleted-list"><li style="list-style-type:disc"><strong>Ejemplo:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="96d67a47-5524-4eaf-b590-b6006898f6b5" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all">colores &lt;- factor(c(&quot;rojo&quot;, &quot;azul&quot;, &quot;verde&quot;, &quot;rojo&quot;))
+print(colores)
+</code></pre></li></ul><h3 id="6da57aac-332a-4dc2-94bf-1e13550211a4" class=""><strong>8. Funciones</strong></h3><ul id="0870bd32-b81d-42e7-ab0c-a050afd4862e" class="bulleted-list"><li style="list-style-type:disc"><strong>Descripción:</strong> Las funciones son objetos en R que contienen una secuencia de comandos para realizar una tarea específica. Puedes crear tus propias funciones.</li></ul><ul id="0b0e8120-8f43-4a47-ad73-329ed6f6361c" class="bulleted-list"><li style="list-style-type:disc"><strong>Ejemplo:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5490616d-91e8-479a-bd43-30de3757627d" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all">mi_funcion &lt;- function(x, y) {
+  return(x + y)
+}
+resultado &lt;- mi_funcion(3, 4)
+print(resultado)  # Resultado: 7
+</code></pre></li></ul><h3 id="6aff1cd8-8324-40de-99ce-5f0619b21d3d" class=""><strong>9. Listas</strong></h3><ul id="1696cdca-5225-4579-a550-89d421112a88" class="bulleted-list"><li style="list-style-type:disc"><strong>Descripción:</strong> Una lista en R es un tipo de objeto que puede contener una colección de diferentes tipos de elementos, como vectores, matrices, data frames, e incluso otras listas. Las listas son extremadamente flexibles y se utilizan ampliamente en R para almacenar conjuntos complejos de datos.</li></ul><ul id="2d5ab406-fae8-48cc-a01a-0df01f271ec6" class="bulleted-list"><li style="list-style-type:disc"><strong>Ejemplo:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="dc438f24-d3f4-4899-a21a-908202147aa9" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all">mi_lista &lt;- list(
+  numeros = c(1, 2, 3),
+  caracteres = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;),
+  logicos = c(TRUE, FALSE, TRUE)
+)
+print(mi_lista)
+</code></pre></li></ul><h3 id="80f6b25f-0a89-4879-93f9-d41b13380f78" class=""><strong>10. Objetos S3, S4 y R6</strong></h3><ul id="c06222d9-b8bf-4bfe-b730-e86b3bb89f92" class="bulleted-list"><li style="list-style-type:disc"><strong>Descripción:</strong> Estos son tipos de objetos más avanzados que se utilizan en la programación orientada a objetos en R. Permiten crear clases y métodos personalizados, lo que es útil para desarrollar paquetes y aplicaciones complejas.</li></ul><p id="a820a46c-88d8-4e3c-a691-ef1d95d9e6ae" class="">Cada uno de estos tipos de objetos tiene su uso particular en R y es importante conocer cuándo y cómo utilizarlos según las necesidades del análisis o tarea que estés realizando.</p><p id="c3959103-f52f-406d-bada-0499076ac2b4" class="">
+</p><h1 id="261a6a76-61ce-4e2c-8058-01e32e27d2f9" class="">Como acceder a los elementos de un data frame</h1><p id="320e75d9-b473-4b03-953a-e194531d21c3" class="">
+</p><p id="f078d112-db9c-45a6-8bef-de2caa565322" class="">Acceder a los elementos de un <code>data frame</code> en R es una operación común y se puede hacer de varias maneras, dependiendo de lo que necesites. A continuación, te explico diferentes métodos para acceder a las filas, columnas y elementos específicos dentro de un <code>data frame</code>:</p><h3 id="9287333e-2061-4f50-8631-4348a20b07b0" class=""><strong>1. Acceder a una Columna por Nombre</strong></h3><ul id="0a837e73-996a-4ed3-b486-871c350f294a" class="bulleted-list"><li style="list-style-type:disc"><strong>Método 1: Usando el símbolo </strong><code><strong>$</strong></code><ul id="dc36bcce-3ae8-452a-b231-6c3f16c4b0a3" class="bulleted-list"><li style="list-style-type:circle">Puedes acceder a una columna de un <code>data frame</code> utilizando el símbolo <code>$</code> seguido del nombre de la columna.</li></ul><ul id="804a9208-b48d-49c5-af96-6c9234434e72" class="bulleted-list"><li style="list-style-type:circle"><strong>Ejemplo:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="949eabf0-49bc-47e8-969d-fb5e206e3f14" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all">df &lt;- data.frame(
+  Nombre = c(&quot;Juan&quot;, &quot;María&quot;, &quot;Pedro&quot;),
+  Edad = c(23, 22, 25),
+  Ciudad = c(&quot;Talca&quot;, &quot;Santiago&quot;, &quot;Concepción&quot;)
+)
+
+# Acceder a la columna &quot;Nombre&quot;
+nombres &lt;- df$Nombre
+print(nombres)
+</code></pre></li></ul></li></ul><ul id="e9f4c3dd-14e5-4157-93bd-b24fe14eb1a2" class="bulleted-list"><li style="list-style-type:disc"><strong>Método 2: Usando corchetes </strong><code><strong>[]</strong></code><strong> y el nombre de la columna</strong><ul id="1f1c5600-5579-47f1-8328-95bd996ebc56" class="bulleted-list"><li style="list-style-type:circle">También puedes acceder a una columna usando corchetes y especificando el nombre de la columna como una cadena de texto.</li></ul><ul id="49bd9d93-3d72-466e-872c-6bf7c71a4906" class="bulleted-list"><li style="list-style-type:circle"><strong>Ejemplo:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="76c2edee-c68d-44a7-bc03-d78a7eefbf66" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all">nombres &lt;- df[&quot;Nombre&quot;]
+print(nombres)
+</code></pre></li></ul></li></ul><ul id="918b90e6-6eec-40ee-b9dd-a0f3d585674f" class="bulleted-list"><li style="list-style-type:disc"><strong>Método 3: Usando corchetes </strong><code><strong>[]</strong></code><strong> y el número de la columna</strong><ul id="220a7751-6be6-4c65-bfb8-4cce0b313bf1" class="bulleted-list"><li style="list-style-type:circle">Si conoces la posición de la columna, puedes acceder a ella utilizando su número.</li></ul><ul id="3701dd2f-3e85-4bcc-81ab-224482798394" class="bulleted-list"><li style="list-style-type:circle"><strong>Ejemplo:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8594116b-79c9-4826-bd61-99852661ff71" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all">nombres &lt;- df[, 1]  # La primera columna
+print(nombres)
+</code></pre></li></ul></li></ul><h3 id="ec781dbf-a1bf-474a-865f-04dd395deb4f" class=""><strong>2. Acceder a una Fila por Número</strong></h3><ul id="926ba26a-f36c-42b5-84ac-fcdf48f147cc" class="bulleted-list"><li style="list-style-type:disc"><strong>Usando corchetes </strong><code><strong>[]</strong></code><strong>:</strong><ul id="17939f0d-36c1-40d3-bdd4-7b06b1d29ce2" class="bulleted-list"><li style="list-style-type:circle">Puedes acceder a una fila específica usando corchetes y especificando el número de la fila.</li></ul><ul id="b27f0f61-bc4a-4a00-b103-814d8028e474" class="bulleted-list"><li style="list-style-type:circle"><strong>Ejemplo:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e070735b-3d4f-49d2-bd1a-71339ae12778" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all">primera_fila &lt;- df[1, ]
+print(primera_fila)
+</code></pre></li></ul></li></ul><h3 id="e0c1f637-fbab-473b-8a51-a937ae5dffe7" class=""><strong>3. Acceder a un Elemento Específico</strong></h3><ul id="dd6c7def-306e-49f3-9ca3-f65acf1f1674" class="bulleted-list"><li style="list-style-type:disc"><strong>Usando corchetes </strong><code><strong>[]</strong></code><strong> y especificando fila y columna:</strong><ul id="6c0a4f45-0ae0-42a4-965f-1ec4cb0d16e0" class="bulleted-list"><li style="list-style-type:circle">Para acceder a un elemento específico dentro del <code>data frame</code>, usa corchetes con el número de la fila y el número de la columna.</li></ul><ul id="58bd9824-157e-4390-93b3-a035cfb0c984" class="bulleted-list"><li style="list-style-type:circle"><strong>Ejemplo:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="07d3183d-7139-497f-878a-95382d736f3e" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all">elemento &lt;- df[2, 3]  # Elemento en la segunda fila y tercera columna
+print(elemento)  # Resultado: &quot;Santiago&quot;
+</code></pre></li></ul><ul id="2b95f887-ba5e-468d-b473-5c486d38d439" class="bulleted-list"><li style="list-style-type:circle">También puedes usar el nombre de la columna en lugar del número.</li></ul><ul id="de46480f-90da-4bfa-b5fb-a9e5774a1fd0" class="bulleted-list"><li style="list-style-type:circle"><strong>Ejemplo:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3ad9c896-d4ed-4d2e-b8af-39a507e9bad1" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all">elemento &lt;- df[2, &quot;Ciudad&quot;]  # Elemento en la segunda fila y columna &quot;Ciudad&quot;
+print(elemento)  # Resultado: &quot;Santiago&quot;
+</code></pre></li></ul></li></ul><h3 id="c3b16e64-f1cd-4a24-adf1-9b863561a49f" class=""><strong>4. Acceder a Subconjuntos de un Data Frame</strong></h3><ul id="84ea7f4e-9d70-45cb-9c39-a1b3a34a5374" class="bulleted-list"><li style="list-style-type:disc"><strong>Seleccionar múltiples filas y columnas:</strong><ul id="5ea9e304-ba5e-41df-8b90-56a8da39fe13" class="bulleted-list"><li style="list-style-type:circle">Puedes seleccionar un subconjunto de un <code>data frame</code> especificando rangos o vectores de números de filas y columnas.</li></ul><ul id="05925934-cf4b-4053-8897-505bdd97fdfe" class="bulleted-list"><li style="list-style-type:circle"><strong>Ejemplo:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d2a0285d-dcfb-4e3b-b915-47d80c5adc6a" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all">subset &lt;- df[1:2, c(&quot;Nombre&quot;, &quot;Ciudad&quot;)]
+print(subset)
+</code></pre></li></ul></li></ul><ul id="25ac2efe-580b-4cf7-92f8-1ee49c4b5d77" class="bulleted-list"><li style="list-style-type:disc"><strong>Filtrar datos usando condiciones:</strong><ul id="fad303bc-74c5-4a64-83a3-2415d464f2f0" class="bulleted-list"><li style="list-style-type:circle">Puedes filtrar filas usando condiciones lógicas.</li></ul><ul id="ed304cc4-3562-49e1-bb07-af723404fbab" class="bulleted-list"><li style="list-style-type:circle"><strong>Ejemplo:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9c96617a-ef43-4e27-a042-ce9b8be5a5ca" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all">mayores_de_23 &lt;- subset(df, Edad &gt; 23)
+print(mayores_de_23)
+</code></pre></li></ul></li></ul><h3 id="2a128388-3b5d-4c96-a6ed-b46a84336075" class=""></h3><p id="5dc10767-5f9a-4af4-a920-f2d827fad0b4" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
